@@ -1,0 +1,17 @@
+db:
+  local_port: "5436"
+  docker_port: "5432"
+  password: "'qwerty'"
+  username: "'postgres'"
+  host: "localhost"
+  sslmode: "disable"
+  database: "postgres" 
+
+flood:
+  N: 10
+  K: 5
+
+delete_mode:
+  interval_delete: 0 # настройка интервала (насколько старые записи удалять)
+  period_delete: 0 # раз в period_delete секунд происходит запуск функции удаления
+
