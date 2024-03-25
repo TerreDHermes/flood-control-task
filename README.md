@@ -19,17 +19,27 @@ go run cmd/main.go
 ```
 
 # Возможности в конфигурации
-Возможна конфигурация параметров, которые используются при создании контейнера, в котором располагается наша база данных Postgres. Базовая конфигурация:
+Возможна конфигурация параметров, которые используются при создании контейнера, в котором располагается наша база данных Postgres. Базовая конфигурация в Makefile:
 
 <div align="center">
   <img src="https://github.com/TerreDHermes/TerreDHermes/blob/main/assets/vk/makefile.png" alt="Описание изображения" style="width: 100%;">
 </div>
 
-Возможна конфигурация параметров, которые использует приложение при подключении к базе данных Postgres. Базовая конфигурация:
+Возможна конфигурация параметров, которые использует приложение при подключении к базе данных Postgres. Базовая конфигурация в config.yml:
 
 <div align="center">
   <img src="https://github.com/TerreDHermes/TerreDHermes/blob/main/assets/vk/config.yml.png" alt="Описание изображения" style="width: 100%;">
 </div>
+
+В config.yml можно настроить параметры N и K, N - время в секундах, K - количество вызовов метода Check
+
+Добавлен плагин в Postgres, который позволяет выполнять функцию по обработке данных в таблице согласно расписанию.
+
+<div align="center">
+  <img src="https://github.com/TerreDHermes/TerreDHermes/blob/main/assets/vk/sql_up.png" alt="Описание изображения" style="width: 100%;">
+</div>
+
+
 
 
 
