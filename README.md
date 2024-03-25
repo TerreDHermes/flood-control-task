@@ -73,6 +73,17 @@ go run cmd/main.go
   <img src="https://github.com/TerreDHermes/TerreDHermes/blob/main/assets/vk/удаление.png" alt="Описание изображения" style="width: 100%;">
 </div>
 
+Это последнее, что успел сделать (не до конца, но работает). Если interval_delete и period_delete равны нулю, то расписание удаления не меняется. Если у них есть значения, то вызывается функция UpdateDeleteSQL:
+
+<div align="center">
+  <img src="https://github.com/TerreDHermes/TerreDHermes/blob/main/assets/vk/измененеие%20расписания.png" alt="Описание изображения" style="width: 100%;">
+</div>
+
+Что не успел:
+
+1) Добавить логику (если время жизни кортежа < текщуего временного окна, то обновлять, иначе нет);
+   
+2) Исправить ошибку -  interval_delete и period_delete перепутаны местами в запросах. Это не критично для работы, но не логично.
 
 
 # Тестирование
