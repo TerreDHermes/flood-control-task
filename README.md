@@ -2,6 +2,7 @@
 Реализован интерфейс с методом для проверки правил флуд-контроля. Если за последние N секунд вызовов метода Check будет больше K, значит, проверка на флуд-контроль не пройдена.
 
 База данных - PostgreSQL
+
 Язык Go - 1.21
 
 # Запуск
@@ -16,6 +17,13 @@ make
 ```bash
 go run cmd/main.go
 ```
+
+# Возможности в конфигурации
+
+<div align="center">
+  <img src="https://github.com/TerreDHermes/TerreDHermes/blob/main/assets/vk/makefile.png" alt="Описание изображения" style="width: 70%;">
+</div>
+
 
 
 # Что нужно сделать
