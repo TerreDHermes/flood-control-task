@@ -2,14 +2,13 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"log"
 	"os"
 	"time"
 
+	dB "vk/internal/db"
 	fl "vk/internal/floodcontrol"
 
-	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
 	"github.com/sirupsen/logrus"
 	"gopkg.in/yaml.v2"
@@ -21,6 +20,7 @@ type FloodControl interface {
 
 func main() {
 	logrus.SetFormatter(new(logrus.JSONFormatter))
+
 	// Чтение конфигурационного файла
 	configFile, err := os.Open("configs/config.yml")
 	if err != nil {
@@ -34,22 +34,8 @@ func main() {
 		logrus.Fatalf("failed to decode config file: %s", err.Error())
 	}
 
-	//Подключение к базе данных PostgreSQL
-	db, err := sqlx.Open("postgres", fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s sslmode=%s",
-		config.DB.Host,
-		config.DB.LocalPort,
-		config.DB.Username,
-		config.DB.Database,
-		config.DB.Password,
-		config.DB.SSLMode))
-	if err != nil {
-		logrus.Fatalf("failed connect to postgres: %s", err.Error())
-	}
-	defer db.Close()
-
-	if err = db.Ping(); err != nil {
-		logrus.Fatalf("failed to ping the database: %s", err.Error())
-	}
+	// подключение к бд
+	db, err := dB.NewPosrgresDB(config)
 
 	if config.Delete.IntervalDelete != 0 && config.Delete.PeriodDelete != 0 {
 		if err = fl.UpdateDeleteSQL(db, config.Delete.IntervalDelete, config.Delete.PeriodDelete); err != nil {
@@ -60,7 +46,7 @@ func main() {
 	}
 
 	var floodControl FloodControl
-	// Создание экземпляра FloodControl с параметрами
+
 	floodControl = fl.NewFloodControl(db, time.Second*time.Duration(config.Flood.N), config.Flood.K)
 
 	// Создание контекста для управления жизненным циклом горутин
