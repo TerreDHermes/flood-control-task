@@ -25,6 +25,12 @@ go run cmd/main.go
   <img src="https://github.com/TerreDHermes/TerreDHermes/blob/main/assets/vk/makefile.png" alt="Описание изображения" style="width: 100%;">
 </div>
 
+Возможна конфигурация параметров, которые использует приложение при подключении к базе данных Postgres. Базовая конфигурация:
+
+<div align="center">
+  <img src="https://github.com/TerreDHermes/TerreDHermes/blob/main/assets/vk/config.yml.png" alt="Описание изображения" style="width: 100%;">
+</div>
+
 
 
 # Что нужно сделать
